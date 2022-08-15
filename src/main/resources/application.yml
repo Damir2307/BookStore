@@ -1,0 +1,30 @@
+spring:
+  liquibase:
+    change-log: classpath:db/changelog/dbChangelog.xml
+    drop-first: false
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    password: 349161
+    username: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    hibernate:
+      ddl-auto: validate
+
+logging:
+  file.name: log/app.log
+  level:
+    org:
+      springframework:
+        web: ERROR
+    root: INFO
+server:
+  port: 8080
+app:
+  jwtSecret: jwtToken
+
