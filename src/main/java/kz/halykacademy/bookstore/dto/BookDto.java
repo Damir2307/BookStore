@@ -1,9 +1,7 @@
 package kz.halykacademy.bookstore.dto;
 
-import kz.halykacademy.bookstore.entity.Genre;
 import lombok.Data;
 
-import javax.persistence.Column;
 import java.util.Date;
 import java.util.List;
 

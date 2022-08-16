@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Api(description="Авторы APIs", tags = "Авторы")
+@Api(description = "Авторы APIs", tags = "Авторы(Authors)")
 @RestController
 @RequestMapping("/v1/api/author")
 @AllArgsConstructor
@@ -22,40 +22,38 @@ public class AuthorController {
     @ApiOperation(value = "Весь список авторов", notes = "Весь список авторов")
     @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @GetMapping("/get-all")
-    public ResponseEntity<List<Author>> getAll(){
+    public ResponseEntity<List<Author>> getAll() {
         return ResponseEntity.ok(authorService.getAll());
     }
 
     @ApiOperation(value = "Искать автора по айди", notes = "Искать автора по айди")
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN','USER')")
-    public ResponseEntity<Author> getAuthorById(@PathVariable Long id){
+    public ResponseEntity<Author> getAuthorById(@PathVariable Long id) {
         return ResponseEntity.ok(authorService.getById(id));
     }
 
     @ApiOperation(value = "Искать автора по имени", notes = "Искать автора по имени")
     @GetMapping("/find/{name}")
     @PreAuthorize("hasAnyRole('ADMIN','USER')")
-    public ResponseEntity<List<Author>> getAuthorsByName(@PathVariable String name){
+    public ResponseEntity<List<Author>> getAuthorsByName(@PathVariable String name) {
         return ResponseEntity.ok(authorService.getListOfAuthorsByName(name));
     }
 
     @ApiOperation(value = "Создать автора", notes = "Создать автора")
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
-    public ResponseEntity<Author> createAuthor(@RequestBody AuthorDto authorDto){
+    public ResponseEntity<Author> createAuthor(@RequestBody AuthorDto authorDto) {
         return ResponseEntity.ok(authorService.createAuthor(authorDto));
     }
 
     @ApiOperation(value = "Удалить автора", notes = "Удалить автора")
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteAuthor(@PathVariable Long id){
+    public ResponseEntity<Void> deleteAuthor(@PathVariable Long id) {
         authorService.deleteAuthor(id);
         return ResponseEntity.ok().build();
     }
-
-
 
 
 }

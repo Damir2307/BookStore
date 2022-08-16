@@ -15,7 +15,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Controller
-@Api(description="Книги APIs", tags = "Книги")
+@Api(description = "Книги APIs", tags = "Книги(Books)")
 @RequestMapping("/v1/api/book")
 public class BookController {
     private final BookService bookService;
@@ -23,28 +23,28 @@ public class BookController {
     @GetMapping("/get-all")
     @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @ApiOperation(value = "Список всех книг", notes = "Список всех книг")
-    public ResponseEntity<List<Book>> getAll(){
+    public ResponseEntity<List<Book>> getAll() {
         return ResponseEntity.ok(bookService.getAll());
     }
 
     @PostMapping("/add")
     @PreAuthorize("hasRole('ADMIN')")
     @ApiOperation(value = "Добавить книгу", notes = "Добавить книгу")
-    public ResponseEntity<Book> addBook(@RequestBody BookDto bookDto){
+    public ResponseEntity<Book> addBook(@RequestBody BookDto bookDto) {
         return ResponseEntity.ok(bookService.addBook(bookDto));
     }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @ApiOperation(value = "Искать книгу по айди", notes = "Искать книгу по айди")
-    public ResponseEntity<Book> getBookById(@PathVariable Long id){
+    public ResponseEntity<Book> getBookById(@PathVariable Long id) {
         return ResponseEntity.ok(bookService.getById(id));
     }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     @ApiOperation(value = "Удалить книгу", notes = "Удалить книгу")
-    public ResponseEntity<Void> deleteBookById(@PathVariable Long id){
+    public ResponseEntity<Void> deleteBookById(@PathVariable Long id) {
         bookService.deleteById(id);
         return ResponseEntity.ok().build();
     }
@@ -52,7 +52,7 @@ public class BookController {
     @GetMapping("/find/{name}")
     @PreAuthorize("hasAnyRole('ADMIN','USER')")
     @ApiOperation(value = "Искать книгу по имени", notes = "Искать книгу по имени")
-    public ResponseEntity<List<Book>> findBooksByName(@PathVariable String name){
+    public ResponseEntity<List<Book>> findBooksByName(@PathVariable String name) {
         return ResponseEntity.ok(bookService.findBooksByName(name));
     }
 }
